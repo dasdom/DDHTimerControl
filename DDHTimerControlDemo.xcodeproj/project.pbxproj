@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F20F91701937758100908245 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20F916F1937758100908245 /* Foundation.framework */; };
+		F20F91721937758100908245 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20F91711937758100908245 /* CoreGraphics.framework */; };
+		F20F91741937758100908245 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20F91731937758100908245 /* UIKit.framework */; };
+		F20F917A1937758100908245 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F20F91781937758100908245 /* InfoPlist.strings */; };
+		F20F917C1937758100908245 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F917B1937758100908245 /* main.m */; };
+		F20F91801937758100908245 /* DDHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F917F1937758100908245 /* DDHAppDelegate.m */; };
+		F20F91821937758100908245 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20F91811937758100908245 /* Images.xcassets */; };
+		F20F91891937758100908245 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20F91881937758100908245 /* XCTest.framework */; };
+		F20F918A1937758100908245 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20F916F1937758100908245 /* Foundation.framework */; };
+		F20F918B1937758100908245 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20F91731937758100908245 /* UIKit.framework */; };
+		F20F91931937758100908245 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F20F91911937758100908245 /* InfoPlist.strings */; };
+		F20F91951937758100908245 /* DDHTimerControlDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F91941937758100908245 /* DDHTimerControlDemoTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F20F918C1937758100908245 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F20F91641937758100908245 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F20F916B1937758100908245;
+			remoteInfo = DDHTimerControlDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F20F916C1937758100908245 /* DDHTimerControlDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDHTimerControlDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F20F916F1937758100908245 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F20F91711937758100908245 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F20F91731937758100908245 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F20F91771937758100908245 /* DDHTimerControlDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DDHTimerControlDemo-Info.plist"; sourceTree = "<group>"; };
+		F20F91791937758100908245 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F20F917B1937758100908245 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F20F917D1937758100908245 /* DDHTimerControlDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDHTimerControlDemo-Prefix.pch"; sourceTree = "<group>"; };
+		F20F917E1937758100908245 /* DDHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDHAppDelegate.h; sourceTree = "<group>"; };
+		F20F917F1937758100908245 /* DDHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDHAppDelegate.m; sourceTree = "<group>"; };
+		F20F91811937758100908245 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F20F91871937758100908245 /* DDHTimerControlDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DDHTimerControlDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F20F91881937758100908245 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F20F91901937758100908245 /* DDHTimerControlDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DDHTimerControlDemoTests-Info.plist"; sourceTree = "<group>"; };
+		F20F91921937758100908245 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F20F91941937758100908245 /* DDHTimerControlDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDHTimerControlDemoTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F20F91691937758100908245 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20F91721937758100908245 /* CoreGraphics.framework in Frameworks */,
+				F20F91741937758100908245 /* UIKit.framework in Frameworks */,
+				F20F91701937758100908245 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20F91841937758100908245 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20F91891937758100908245 /* XCTest.framework in Frameworks */,
+				F20F918B1937758100908245 /* UIKit.framework in Frameworks */,
+				F20F918A1937758100908245 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F20F91631937758100908245 = {
+			isa = PBXGroup;
+			children = (
+				F20F91751937758100908245 /* DDHTimerControlDemo */,
+				F20F918E1937758100908245 /* DDHTimerControlDemoTests */,
+				F20F916E1937758100908245 /* Frameworks */,
+				F20F916D1937758100908245 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F20F916D1937758100908245 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F20F916C1937758100908245 /* DDHTimerControlDemo.app */,
+				F20F91871937758100908245 /* DDHTimerControlDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F20F916E1937758100908245 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F20F916F1937758100908245 /* Foundation.framework */,
+				F20F91711937758100908245 /* CoreGraphics.framework */,
+				F20F91731937758100908245 /* UIKit.framework */,
+				F20F91881937758100908245 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F20F91751937758100908245 /* DDHTimerControlDemo */ = {
+			isa = PBXGroup;
+			children = (
+				F20F917E1937758100908245 /* DDHAppDelegate.h */,
+				F20F917F1937758100908245 /* DDHAppDelegate.m */,
+				F20F91811937758100908245 /* Images.xcassets */,
+				F20F91761937758100908245 /* Supporting Files */,
+			);
+			path = DDHTimerControlDemo;
+			sourceTree = "<group>";
+		};
+		F20F91761937758100908245 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F20F91771937758100908245 /* DDHTimerControlDemo-Info.plist */,
+				F20F91781937758100908245 /* InfoPlist.strings */,
+				F20F917B1937758100908245 /* main.m */,
+				F20F917D1937758100908245 /* DDHTimerControlDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F20F918E1937758100908245 /* DDHTimerControlDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				F20F91941937758100908245 /* DDHTimerControlDemoTests.m */,
+				F20F918F1937758100908245 /* Supporting Files */,
+			);
+			path = DDHTimerControlDemoTests;
+			sourceTree = "<group>";
+		};
+		F20F918F1937758100908245 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F20F91901937758100908245 /* DDHTimerControlDemoTests-Info.plist */,
+				F20F91911937758100908245 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F20F916B1937758100908245 /* DDHTimerControlDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F20F91981937758100908245 /* Build configuration list for PBXNativeTarget "DDHTimerControlDemo" */;
+			buildPhases = (
+				F20F91681937758100908245 /* Sources */,
+				F20F91691937758100908245 /* Frameworks */,
+				F20F916A1937758100908245 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DDHTimerControlDemo;
+			productName = DDHTimerControlDemo;
+			productReference = F20F916C1937758100908245 /* DDHTimerControlDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F20F91861937758100908245 /* DDHTimerControlDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F20F919B1937758100908245 /* Build configuration list for PBXNativeTarget "DDHTimerControlDemoTests" */;
+			buildPhases = (
+				F20F91831937758100908245 /* Sources */,
+				F20F91841937758100908245 /* Frameworks */,
+				F20F91851937758100908245 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F20F918D1937758100908245 /* PBXTargetDependency */,
+			);
+			name = DDHTimerControlDemoTests;
+			productName = DDHTimerControlDemoTests;
+			productReference = F20F91871937758100908245 /* DDHTimerControlDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F20F91641937758100908245 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DDH;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = dasdom;
+				TargetAttributes = {
+					F20F91861937758100908245 = {
+						TestTargetID = F20F916B1937758100908245;
+					};
+				};
+			};
+			buildConfigurationList = F20F91671937758100908245 /* Build configuration list for PBXProject "DDHTimerControlDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F20F91631937758100908245;
+			productRefGroup = F20F916D1937758100908245 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F20F916B1937758100908245 /* DDHTimerControlDemo */,
+				F20F91861937758100908245 /* DDHTimerControlDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F20F916A1937758100908245 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20F917A1937758100908245 /* InfoPlist.strings in Resources */,
+				F20F91821937758100908245 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20F91851937758100908245 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20F91931937758100908245 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F20F91681937758100908245 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20F917C1937758100908245 /* main.m in Sources */,
+				F20F91801937758100908245 /* DDHAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20F91831937758100908245 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20F91951937758100908245 /* DDHTimerControlDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F20F918D1937758100908245 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F20F916B1937758100908245 /* DDHTimerControlDemo */;
+			targetProxy = F20F918C1937758100908245 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F20F91781937758100908245 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F20F91791937758100908245 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F20F91911937758100908245 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F20F91921937758100908245 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F20F91961937758100908245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F20F91971937758100908245 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F20F91991937758100908245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DDHTimerControlDemo/DDHTimerControlDemo-Prefix.pch";
+				INFOPLIST_FILE = "DDHTimerControlDemo/DDHTimerControlDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F20F919A1937758100908245 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DDHTimerControlDemo/DDHTimerControlDemo-Prefix.pch";
+				INFOPLIST_FILE = "DDHTimerControlDemo/DDHTimerControlDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F20F919C1937758100908245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DDHTimerControlDemo.app/DDHTimerControlDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DDHTimerControlDemo/DDHTimerControlDemo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DDHTimerControlDemoTests/DDHTimerControlDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F20F919D1937758100908245 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DDHTimerControlDemo.app/DDHTimerControlDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DDHTimerControlDemo/DDHTimerControlDemo-Prefix.pch";
+				INFOPLIST_FILE = "DDHTimerControlDemoTests/DDHTimerControlDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F20F91671937758100908245 /* Build configuration list for PBXProject "DDHTimerControlDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F20F91961937758100908245 /* Debug */,
+				F20F91971937758100908245 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F20F91981937758100908245 /* Build configuration list for PBXNativeTarget "DDHTimerControlDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F20F91991937758100908245 /* Debug */,
+				F20F919A1937758100908245 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F20F919B1937758100908245 /* Build configuration list for PBXNativeTarget "DDHTimerControlDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F20F919C1937758100908245 /* Debug */,
+				F20F919D1937758100908245 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F20F91641937758100908245 /* Project object */;
+}
