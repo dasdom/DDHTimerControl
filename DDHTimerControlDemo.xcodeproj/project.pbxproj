@@ -19,6 +19,8 @@
 		F20F918B1937758100908245 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20F91731937758100908245 /* UIKit.framework */; };
 		F20F91931937758100908245 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F20F91911937758100908245 /* InfoPlist.strings */; };
 		F20F91951937758100908245 /* DDHTimerControlDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F91941937758100908245 /* DDHTimerControlDemoTests.m */; };
+		F20F91A0193775A300908245 /* DDHDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F919F193775A300908245 /* DDHDemoViewController.m */; };
+		F20F91A3193778BE00908245 /* DDHTimerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F91A2193778BE00908245 /* DDHTimerControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,10 @@
 		F20F91901937758100908245 /* DDHTimerControlDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DDHTimerControlDemoTests-Info.plist"; sourceTree = "<group>"; };
 		F20F91921937758100908245 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F20F91941937758100908245 /* DDHTimerControlDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDHTimerControlDemoTests.m; sourceTree = "<group>"; };
+		F20F919E193775A300908245 /* DDHDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHDemoViewController.h; sourceTree = "<group>"; };
+		F20F919F193775A300908245 /* DDHDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHDemoViewController.m; sourceTree = "<group>"; };
+		F20F91A1193778BE00908245 /* DDHTimerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHTimerControl.h; sourceTree = "<group>"; };
+		F20F91A2193778BE00908245 /* DDHTimerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHTimerControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,10 @@
 			children = (
 				F20F917E1937758100908245 /* DDHAppDelegate.h */,
 				F20F917F1937758100908245 /* DDHAppDelegate.m */,
+				F20F919E193775A300908245 /* DDHDemoViewController.h */,
+				F20F919F193775A300908245 /* DDHDemoViewController.m */,
+				F20F91A1193778BE00908245 /* DDHTimerControl.h */,
+				F20F91A2193778BE00908245 /* DDHTimerControl.m */,
 				F20F91811937758100908245 /* Images.xcassets */,
 				F20F91761937758100908245 /* Supporting Files */,
 			);
@@ -241,6 +251,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F20F917C1937758100908245 /* main.m in Sources */,
+				F20F91A0193775A300908245 /* DDHDemoViewController.m in Sources */,
+				F20F91A3193778BE00908245 /* DDHTimerControl.m in Sources */,
 				F20F91801937758100908245 /* DDHAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
