@@ -116,6 +116,10 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
     self.majorShapeLayer.strokeColor = [timerColor CGColor];
     self.majorShapeLayer.lineWidth = self.ringWidth;
     self.majorShapeLayer.strokeEnd = (float)self.minutesOrSeconds/self.maxValue;
+    if (self.type >= DDHTimerTypeNumberOfTypes) {
+        NSAssert1(false, @"The given type (%lu) is not supported", self.type);
+    }
+    
     if (self.type != DDHTimerTypeSolid) {
         if (self.type == DDHTimerTypeElements) {
             self.majorShapeLayer.lineDashPattern = @[@(dashLength), @(8.76*dashLength)];
