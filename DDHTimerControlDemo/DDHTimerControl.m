@@ -244,7 +244,7 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 }
 
 - (NSString*)accessibilityValue {
-    return self.minutesOrSecondsLabel.text;
+    return [NSString stringWithFormat:@"%@ %@", self.minutesOrSecondsLabel.text, self.titleLabel.text];
 }
 
 - (UIAccessibilityTraits)accessibilityTraits {
