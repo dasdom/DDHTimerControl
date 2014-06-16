@@ -10,12 +10,8 @@
 
 const CGFloat kDDHInsetX = 10.0f;
 const CGFloat kDDHInsetY = kDDHInsetX;
-//const CGFloat kDDHLabelInsetX = kDDHInsetX + 16.0f;
-//const CGFloat kDDHLabelInsetY = kDDHLabelInsetX;
 const CGFloat kDDHLabelWidth = 40;
 const CGFloat kDDHLabelHeight = kDDHLabelWidth;
-//const CGFloat kDDHMovingLabelWidth = 40.0f;
-//const CGFloat kDDHMovingLabelHeight = 30.0f;
 
 @interface DDHTimerControl ()
 @property (nonatomic, assign) CGPoint startPoint;
@@ -27,29 +23,43 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 @property (nonatomic, strong) UILabel *minutesOrSecondsLabel;
 @property (nonatomic, assign) CGRect staticLableRect;
 @property (nonatomic, assign) CGFloat fontSize;
-@property (nonatomic, strong) CAShapeLayer *shapeLayer;
+@property (nonatomic, strong) CAShapeLayer *majorShapeLayer;
+@property (nonatomic, strong) CAShapeLayer *minorShapeLayer;
 @end
 
 @implementation DDHTimerControl
 
-- (id)initWithFrame:(CGRect)frame
++ (instancetype)timerControlWithType:(DDHTimerType)type {
+    DDHTimerControl *control = [[DDHTimerControl alloc] initWithFrame:CGRectZero];
+    control.type = type;
+    return control;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-
+        
         _maxValue = 60.0f;
+        _ringWidth = 4;
         
         _minutesOrSecondsLabel = [[UILabel alloc] init];
         _minutesOrSecondsLabel.layer.cornerRadius = 6.0f;
         _minutesOrSecondsLabel.clipsToBounds = YES;
-//        _minutesOrSecondsLabel.backgroundColor = [UIColor grayColor];
         
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.adjustsFontSizeToFitWidth = YES;
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        
+        _minorShapeLayer = [CAShapeLayer layer];
+        [self.layer addSublayer:_minorShapeLayer];
+        
+        _majorShapeLayer = [CAShapeLayer layer];
+        [self.layer addSublayer:_majorShapeLayer];
+        
+        [self addSubview:_titleLabel];
         [self addSubview:_minutesOrSecondsLabel];
-        
-        self.shapeLayer = [CAShapeLayer layer];
-        
-        [self.layer addSublayer:self.shapeLayer];
 
     }
     return self;
@@ -62,12 +72,17 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
     _timerElementRect = CGRectInset(frame, kDDHInsetX, kDDHInsetY);
     _radius = CGRectGetWidth(_timerElementRect) / 2;
 
-    _staticLableRect = CGRectInset(self.bounds, kDDHInsetX + 0.14*frame.size.width, kDDHInsetY + 0.14*frame.size.height);
+    _staticLableRect = CGRectInset(self.bounds, kDDHInsetX + floorf(0.18*frame.size.width), kDDHInsetY + floorf(0.18*frame.size.height));
+    _staticLableRect.origin.y -= floorf(0.1*frame.size.height);
     _minutesOrSecondsLabel.frame = _staticLableRect;
 
-    self.fontSize = ceilf(_staticLableRect.size.height) - 10;
-    NSLog(@"fontSize: %f", self.fontSize);
+    CGFloat height = _staticLableRect.size.height;
+    _titleLabel.frame = CGRectMake(CGRectGetMinX(_staticLableRect), CGRectGetMaxY(_staticLableRect)-floorf(0.1*height), _staticLableRect.size.width, floorf(0.4f*height));
+    _titleLabel.textColor = self.color;
+    
+    self.fontSize = ceilf(0.85f*height);
 
+    _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:floorf(self.fontSize/2.0f)];
 }
 
 
@@ -75,23 +90,14 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    CGFloat endAngleDegrees = 90 - self.minutesOrSeconds * 360 / 60.0;
     NSString* expression = [NSString stringWithFormat: @"%ld", (long)round(self.minutesOrSeconds)];
     
     //// TimerElement Drawing
-    UIBezierPath* timerElementPath = UIBezierPath.bezierPath;
     CGFloat startAngle = 3 * M_PI/2;
-    self.endAngle = -endAngleDegrees * M_PI/180;
+    self.endAngle = self.minutesOrSeconds * 2 * M_PI / self.maxValue - M_PI_2;
     self.timerCenter = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-
-    [timerElementPath addArcWithCenter:self.timerCenter radius:self.radius startAngle:startAngle endAngle:self.endAngle clockwise: YES];
-//    [timerElementPath addArcWithCenter:self.timerCenter radius:self.radius - 4 startAngle:self.endAngle endAngle:startAngle  clockwise: NO];
-//    [timerElementPath closePath];
-    timerElementPath.lineWidth = 4;
     
-    CGFloat dashLength = 2*self.radius*M_PI/118;
-    CGFloat dash_pattern[]={dashLength,dashLength};
-    [timerElementPath setLineDash:dash_pattern count:2 phase:0];
+    CGFloat dashLength = 2*self.radius*M_PI/(2*(self.maxValue-1));
     
     if (!self.color) {
         self.color = [UIColor greenColor];
@@ -102,19 +108,44 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
     
     UIColor *timerColor = self.highlighted ? self.highlightColor : self.color;
     [timerColor setFill];
-//    [timerElementPath fill];
     
-//    [timerColor setStroke];
-//    [timerElementPath stroke];
+    UIBezierPath* timerElementPath = UIBezierPath.bezierPath;
+    [timerElementPath addArcWithCenter:self.timerCenter radius:self.radius startAngle:startAngle endAngle:startAngle-0.01 clockwise: YES];
     
-    self.shapeLayer.fillColor = [[UIColor clearColor] CGColor];
-    self.shapeLayer.strokeColor = [timerColor CGColor];
-    self.shapeLayer.lineWidth = 4.0f;
-    self.shapeLayer.strokeEnd = 1.0f;
-    self.shapeLayer.lineDashPattern = @[@(dashLength), @(dashLength)];
-    self.shapeLayer.path = timerElementPath.CGPath;
+    self.majorShapeLayer.fillColor = [[UIColor clearColor] CGColor];
+    self.majorShapeLayer.strokeColor = [timerColor CGColor];
+    self.majorShapeLayer.lineWidth = self.ringWidth;
+    self.majorShapeLayer.strokeEnd = (float)self.minutesOrSeconds/self.maxValue;
+    if (self.type != DDHTimerTypeSolid) {
+        if (self.type == DDHTimerTypeElements) {
+            self.majorShapeLayer.lineDashPattern = @[@(dashLength), @(8.76*dashLength)];
+        } else if (self.type == DDHTimerTypeEqualElements) {
+            self.majorShapeLayer.lineDashPattern = @[@(dashLength), @(0.955*dashLength)];
+        }
+        self.majorShapeLayer.lineDashPhase = 1;
+    }
+    self.majorShapeLayer.path = timerElementPath.CGPath;
 
-    UIBezierPath *handlePath = [UIBezierPath bezierPathWithArcCenter:[self handlePoint] radius:3.0f startAngle:0 endAngle:2*M_PI clockwise:YES];
+    if (self.type == DDHTimerTypeElements) {
+        UIBezierPath *timerMinorElementPath = UIBezierPath.bezierPath;
+        [timerMinorElementPath addArcWithCenter:self.timerCenter radius:self.radius startAngle:startAngle endAngle:startAngle-0.01 clockwise: YES];
+        self.minorShapeLayer.fillColor = [[UIColor clearColor] CGColor];
+        self.minorShapeLayer.strokeColor = [[timerColor colorWithAlphaComponent:0.5f] CGColor];
+        self.minorShapeLayer.lineWidth = 1;
+        self.minorShapeLayer.strokeEnd = (float)self.minutesOrSeconds/self.maxValue;
+        self.minorShapeLayer.lineDashPattern = @[@(dashLength), @(0.955*dashLength)];
+        self.minorShapeLayer.lineDashPhase = 1;
+        self.minorShapeLayer.path = timerMinorElementPath.CGPath;
+    }
+    
+    CGFloat handleRadius;
+    if (self.userInteractionEnabled) {
+        handleRadius = self.ringWidth;
+    } else {
+        handleRadius = ceilf(self.ringWidth/2);
+    }
+
+    UIBezierPath *handlePath = [UIBezierPath bezierPathWithArcCenter:[self handlePoint] radius:handleRadius startAngle:0 endAngle:2*M_PI clockwise:YES];
     [handlePath fill];
     
     NSMutableParagraphStyle* labelStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
@@ -122,7 +153,6 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 
     NSDictionary *labelFontAttributes = @{NSFontAttributeName: [UIFont fontWithName: @"HelveticaNeue-Light" size:self.fontSize], NSForegroundColorAttributeName:self.color, NSParagraphStyleAttributeName: labelStyle};
     
-//    self.minutesOrSecondsLabel.frame = labelRect;
     self.minutesOrSecondsLabel.attributedText = [[NSAttributedString alloc] initWithString:expression attributes:labelFontAttributes];
 }
 
@@ -136,18 +166,18 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 }
 
 #pragma mark - Setters
-- (void)setMinutesOrSeconds:(NSInteger)minutesOrSeconds animated:(BOOL)animated {
-    CGFloat fromValue = _minutesOrSeconds / self.minutesOrSeconds;
-
-    _minutesOrSeconds = minutesOrSeconds;
-    [self setNeedsDisplay];
+- (void)setMinutesOrSeconds:(NSInteger)minutesOrSeconds {
+    if (minutesOrSeconds > self.maxValue) {
+        minutesOrSeconds = self.maxValue;
+    } else if (minutesOrSeconds < 0) {
+        minutesOrSeconds = 0;
+    }
     
-    if (animated) {
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-        animation.fromValue = @0.0f;
-        animation.toValue = @1.0f;
-        animation.duration = 5.0f;
-        [self.shapeLayer addAnimation:animation forKey:@"strokeEnd"];
+    if (_minutesOrSeconds != minutesOrSeconds) {
+        _minutesOrSeconds = minutesOrSeconds;
+        [self setNeedsDisplay];
+        
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
 }
 
@@ -164,11 +194,11 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
         self.highlighted = NO;
     }
     self.currentValue = self.minutesOrSeconds;
-
-    [UIView animateWithDuration:0.2f animations:^{
+    
+    [UIView animateWithDuration:0.2f delay:0.0f usingSpringWithDamping:0.8 initialSpringVelocity:20.0f options:kNilOptions animations:^{
         self.minutesOrSecondsLabel.center = CGPointMake(handlePoint.x, handlePoint.y - self.staticLableRect.size.height/2 - 20);
     } completion:^(BOOL finished) {
-        self.minutesOrSecondsLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+        self.minutesOrSecondsLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7f];
         [self setNeedsDisplay];
     }];
     
@@ -176,7 +206,6 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event touchesForView:self] anyObject];
-//    CGPoint previousPosition = [touch previousLocationInView:self];
     CGPoint position = [touch locationInView:self];
     
     CGFloat angleInDegrees = atanf((position.y - self.timerCenter.y)/(position.x - self.timerCenter.x))*180/M_PI + 90;
@@ -184,20 +213,17 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
         angleInDegrees += 180;
     }
     
-    CGFloat selectedMinutesOrSeconds = angleInDegrees * 60 / 360;
+    CGFloat selectedMinutesOrSeconds = angleInDegrees * self.maxValue / 360;
     
-//    self.currentValue = self.currentValue + (previousPosition.y - position.y)/5.0f;
-    
-//    self.minutesOrSeconds = (NSInteger)self.currentValue;
-    self.minutesOrSeconds = selectedMinutesOrSeconds;
+    self.minutesOrSeconds = (NSInteger)selectedMinutesOrSeconds;
     
     CGPoint handlePoint = [self handlePoint];
-       
-    self.minutesOrSecondsLabel.center = CGPointMake(handlePoint.x, handlePoint.y - self.staticLableRect.size.height/2 - 20);
-
-//    self.minutesOrSecondsLabel.frame = CGRectMake(handlePoint.x-kDDHMovingLabelWidth/2, handlePoint.y-kDDHMovingLabelHeight-20.0f, kDDHMovingLabelWidth, kDDHMovingLabelHeight);
     
-    [self setNeedsDisplay];
+    [UIView animateWithDuration:0.1 delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:kNilOptions animations:^{
+        self.minutesOrSecondsLabel.center = CGPointMake(handlePoint.x, handlePoint.y - self.staticLableRect.size.height/2 - 20);
+    } completion:^(BOOL finished) {
+        [self setNeedsDisplay];
+    }];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -210,6 +236,27 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
         [self setNeedsDisplay];
     }];
 
+}
+
+#pragma mark - Accessibility
+- (BOOL)isAccessibilityElement {
+    return YES;
+}
+
+- (NSString*)accessibilityValue {
+    return self.minutesOrSecondsLabel.text;
+}
+
+- (UIAccessibilityTraits)accessibilityTraits {
+    return UIAccessibilityTraitAdjustable;
+}
+
+- (void)accessibilityIncrement {
+    self.minutesOrSeconds = self.minutesOrSeconds + 1;
+}
+
+- (void)accessibilityDecrement {
+    self.minutesOrSeconds = self.minutesOrSeconds - 1;
 }
 
 @end
