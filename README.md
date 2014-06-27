@@ -2,6 +2,9 @@
 
 A control to input minutes or seconds.
 
+![](https://raw.githubusercontent.com/dasdom/DDHTimerControl/master/DDHTimerControlDemo/screenshot.png)
+
+
 ##Usage
 
     DDHTimerControl *timerControl = [DDHTimerControl timerControlWithType:DDHTimerTypeEqualElements];
