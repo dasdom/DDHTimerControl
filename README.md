@@ -13,8 +13,7 @@ A control to input minutes or seconds.
     timerControl.userInteractionEnabled = NO;
     [contentView addSubview:timerControl];
     
-    [self.view addSubview:timerControl];
-    
+
 Currently there are three types supported:
 
     /**
