@@ -123,6 +123,17 @@ typedef NS_ENUM(NSUInteger, DDHTimeInterval) {
 + (instancetype)timerControlWithType:(DDHTimerType)type;
 
 /**
+ *  Create a timer control with a type, time interval, direction, and initial value
+ *
+ *  @param type The type the control should have
+ *  @param interval The DDHTimeInterval value for this control (DDHTimeIntervalMinutes or DDHTimeIntervalSeconds)
+ *  @param direction The direction in which the timer will move (DDHTimerDirectionUp or DDHTimerDirectionDown)
+ *  @param startValue The time value the timer will begin with
+ *  @return An initialized timer control with the provided type, interval, direction, and initial value
+ */
++ (instancetype)timerControlWithType:(DDHTimerType)type interval:(DDHTimeInterval)interval direction:(DDHTimerDirection)direction startValue:(NSInteger)startValue;
+
+/**
  *  The setter for the value
  *
  *  @param minutesOrSeconds The new value

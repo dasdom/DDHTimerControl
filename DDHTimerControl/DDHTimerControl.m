@@ -8,6 +8,9 @@
 
 #import "DDHTimerControl.h"
 
+static NSString * const kDDHMinuteLabelText = @"min";
+static NSString * const kDDHSecondLabelText = @"sec";
+
 const CGFloat kDDHInsetX = 10.0f;
 const CGFloat kDDHInsetY = kDDHInsetX;
 const CGFloat kDDHLabelWidth = 40;
@@ -33,6 +36,16 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 + (instancetype)timerControlWithType:(DDHTimerType)type {
     DDHTimerControl *control = [[DDHTimerControl alloc] initWithFrame:CGRectZero];
     control.type = type;
+    return control;
+}
+
++ (instancetype)timerControlWithType:(DDHTimerType)type interval:(DDHTimeInterval)interval direction:(DDHTimerDirection)direction startValue:(NSInteger)startValue {
+    DDHTimerControl *control = [[DDHTimerControl alloc] init];
+    control.type = type;
+    control.timeInterval = interval;
+    control.direction = direction;
+    control.minutesOrSeconds = startValue;
+    control.titleLabel.text = interval == DDHTimeIntervalSeconds ? kDDHSecondLabelText : kDDHMinuteLabelText;
     return control;
 }
 
