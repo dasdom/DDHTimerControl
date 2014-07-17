@@ -25,6 +25,7 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 @property (nonatomic, assign) CGFloat fontSize;
 @property (nonatomic, strong) CAShapeLayer *majorShapeLayer;
 @property (nonatomic, strong) CAShapeLayer *minorShapeLayer;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation DDHTimerControl
@@ -241,6 +242,40 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
     }];
 
 }
+
+
+#pragma mark - Starting and stopping
+
+- (void)start {
+    // if the timer is not active, create a timer with an interval based on our
+    if (!self.isActive) {
+        self.isActive = YES;
+        NSTimeInterval updateInterval = self.timeInterval == DDHTimeIntervalSeconds ? 1 : 60;
+        _timer = [NSTimer scheduledTimerWithTimeInterval:updateInterval target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)stop {
+    if (self.isActive) {
+        self.isActive = NO;
+        [_timer invalidate];
+        _timer = nil;
+    }
+}
+
+- (void)updateTime {
+    NSInteger nextMinuteOrSecond;
+    
+    if (self.direction == DDHTimerDirectionUp) {
+        nextMinuteOrSecond = _minutesOrSeconds == 59 ? 0 : _minutesOrSeconds + 1;
+    }
+    else {
+        nextMinuteOrSecond = _minutesOrSeconds == 0 ? 59 : _minutesOrSeconds - 1;
+    }
+    
+    [self setMinutesOrSeconds:nextMinuteOrSecond];
+}
+
 
 #pragma mark - Accessibility
 - (BOOL)isAccessibilityElement {

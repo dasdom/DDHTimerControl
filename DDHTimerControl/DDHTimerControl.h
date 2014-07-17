@@ -94,6 +94,11 @@ typedef NS_ENUM(NSUInteger, DDHTimeInterval) {
 @property (nonatomic, assign) CGFloat ringWidth;
 
 /**
+ *  The state of the timer
+ */
+@property (nonatomic) BOOL isActive;
+
+/**
  *  The timer type
  */
 @property (nonatomic, assign) DDHTimerType type;
@@ -123,5 +128,17 @@ typedef NS_ENUM(NSUInteger, DDHTimeInterval) {
  *  @param minutesOrSeconds The new value
  */
 - (void)setMinutesOrSeconds:(NSInteger)minutesOrSeconds;
+
+/**
+ *  Tell the timer to start
+ *
+ */
+- (void)start;
+
+/**
+ *  Tell the timer to stop
+ *
+ */
+- (void)stop;
 
 @end
