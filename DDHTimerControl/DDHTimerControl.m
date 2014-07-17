@@ -260,7 +260,8 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 #pragma mark - Starting and stopping
 
 - (void)start {
-    // if the timer is not active, create a timer with an interval based on our
+    // if the timer is not active, create a repeating timer with the appropriate
+    // time interval and start it immediately
     if (!self.isActive) {
         self.isActive = YES;
         NSTimeInterval updateInterval = self.timeInterval == DDHTimeIntervalSeconds ? 1 : 60;
@@ -269,6 +270,8 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 }
 
 - (void)stop {
+    // if the timer is active, flag we're no longer active, stop the timer
+    // from firing in the future, and get rid of the reference to it
     if (self.isActive) {
         self.isActive = NO;
         [_timer invalidate];
@@ -279,13 +282,19 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 - (void)updateTime {
     NSInteger nextMinuteOrSecond;
     
+    // if the timer is configured to count up, increment the time unless
+    // we need to start it back at zero
     if (self.direction == DDHTimerDirectionUp) {
         nextMinuteOrSecond = _minutesOrSeconds == 59 ? 0 : _minutesOrSeconds + 1;
     }
+    
+    // otherwise we're configured to count down, so decrement the time unless
+    // we need to wrap back around to 59 seconds/mins
     else {
         nextMinuteOrSecond = _minutesOrSeconds == 0 ? 59 : _minutesOrSeconds - 1;
     }
     
+    // update our time accordingly
     [self setMinutesOrSeconds:nextMinuteOrSecond];
 }
 
