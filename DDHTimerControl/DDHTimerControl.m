@@ -8,6 +8,9 @@
 
 #import "DDHTimerControl.h"
 
+static NSString * const kDDHMinuteLabelText = @"min";
+static NSString * const kDDHSecondLabelText = @"sec";
+
 const CGFloat kDDHInsetX = 10.0f;
 const CGFloat kDDHInsetY = kDDHInsetX;
 const CGFloat kDDHLabelWidth = 40;
@@ -25,6 +28,7 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 @property (nonatomic, assign) CGFloat fontSize;
 @property (nonatomic, strong) CAShapeLayer *majorShapeLayer;
 @property (nonatomic, strong) CAShapeLayer *minorShapeLayer;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation DDHTimerControl
@@ -32,6 +36,16 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 + (instancetype)timerControlWithType:(DDHTimerType)type {
     DDHTimerControl *control = [[DDHTimerControl alloc] initWithFrame:CGRectZero];
     control.type = type;
+    return control;
+}
+
++ (instancetype)timerControlWithType:(DDHTimerType)type interval:(DDHTimeInterval)interval direction:(DDHTimerDirection)direction startValue:(NSInteger)startValue {
+    DDHTimerControl *control = [[DDHTimerControl alloc] init];
+    control.type = type;
+    control.timeInterval = interval;
+    control.direction = direction;
+    control.minutesOrSeconds = startValue;
+    control.titleLabel.text = interval == DDHTimeIntervalSeconds ? kDDHSecondLabelText : kDDHMinuteLabelText;
     return control;
 }
 
@@ -241,6 +255,49 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
     }];
 
 }
+
+
+#pragma mark - Starting and stopping
+
+- (void)start {
+    // if the timer is not active, create a repeating timer with the appropriate
+    // time interval and start it immediately
+    if (!self.isActive) {
+        self.isActive = YES;
+        NSTimeInterval updateInterval = self.timeInterval == DDHTimeIntervalSeconds ? 1 : 60;
+        _timer = [NSTimer scheduledTimerWithTimeInterval:updateInterval target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)stop {
+    // if the timer is active, flag we're no longer active, stop the timer
+    // from firing in the future, and get rid of the reference to it
+    if (self.isActive) {
+        self.isActive = NO;
+        [_timer invalidate];
+        _timer = nil;
+    }
+}
+
+- (void)updateTime {
+    NSInteger nextMinuteOrSecond;
+    
+    // if the timer is configured to count up, increment the time unless
+    // we need to start it back at zero
+    if (self.direction == DDHTimerDirectionUp) {
+        nextMinuteOrSecond = _minutesOrSeconds == 59 ? 0 : _minutesOrSeconds + 1;
+    }
+    
+    // otherwise we're configured to count down, so decrement the time unless
+    // we need to wrap back around to 59 seconds/mins
+    else {
+        nextMinuteOrSecond = _minutesOrSeconds == 0 ? 59 : _minutesOrSeconds - 1;
+    }
+    
+    // update our time accordingly
+    [self setMinutesOrSeconds:nextMinuteOrSecond];
+}
+
 
 #pragma mark - Accessibility
 - (BOOL)isAccessibilityElement {
