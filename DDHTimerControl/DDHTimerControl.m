@@ -10,8 +10,8 @@
 
 const CGFloat kDDHInsetX = 10.0f;
 const CGFloat kDDHInsetY = kDDHInsetX;
-const CGFloat kDDHLabelWidth = 40;
-const CGFloat kDDHLabelHeight = kDDHLabelWidth;
+//const CGFloat kDDHLabelWidth = 40;
+//const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 
 @interface DDHTimerControl ()
 @property (nonatomic, assign) CGPoint startPoint;
@@ -189,7 +189,7 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event touchesForView:self] anyObject];
     CGPoint position = [touch locationInView:self];
-    
+  
     CGPoint handlePoint = [self handlePoint];
     UIBezierPath *handlePath = [UIBezierPath bezierPathWithArcCenter:handlePoint radius:20.0f startAngle:0 endAngle:2*M_PI clockwise:YES];
     if ([handlePath containsPoint:position]) {
