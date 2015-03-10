@@ -2,7 +2,7 @@
 
 A control to input minutes or seconds.
 
-![](https://raw.githubusercontent.com/dasdom/DDHTimerControl/master/DDHTimerControlDemo/screenshot.png)
+![](https://raw.githubusercontent.com/dasdom/DDHTimerControl/master/what.gif)
 
 
 ##Usage
