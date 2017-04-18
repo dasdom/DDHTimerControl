@@ -1,11 +1,11 @@
-#DDHTimerControl
+# DDHTimerControl
 
 A control to input minutes or seconds.
 
 ![](https://raw.githubusercontent.com/dasdom/DDHTimerControl/master/what.gif)
 
 
-##Usage
+## Usage
 
     DDHTimerControl *timerControl = [DDHTimerControl timerControlWithType:DDHTimerTypeEqualElements];
     timerControl.translatesAutoresizingMaskIntoConstraints = NO;
@@ -42,11 +42,11 @@ Currently there are three types supported:
     };
 
     
-##Requirements
+## Requirements
 
 ARC and iOS7
 
-##Installation
+## Installation
 
 ### Using CocoaPods
 
